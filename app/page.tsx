@@ -4,6 +4,7 @@ import { useState } from 'react';
 import AdminDashboard from '@/app/components/dashboard/AdminDashboard';
 import StaffDashboard from '@/app/components/dashboard/StaffDashboard';
 import UserDashboard from '@/app/components/user/UserDashboard';
+import ThemeToggle from '@/app/components/shared/ThemeToggle';
 import { User, DashboardStats, UserRole } from '@/app/types';
 
 export default function Home() {
@@ -80,6 +81,9 @@ export default function Home() {
 
   return (
     <div className="min-h-screen">
+      {/* Theme Toggle */}
+      <ThemeToggle />
+
       {/* Role switcher - Fixed at top */}
       <div className="fixed top-4 right-4 z-[100] bg-white dark:bg-gray-800 rounded-lg shadow-xl border-2 border-gray-200 dark:border-gray-700 p-4">
         <div className="mb-3">

@@ -16,7 +16,7 @@ const StaffDashboard: React.FC<StaffDashboardProps> = ({ user, stats }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:bg-none">
       {/* Sidebar */}
       <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} role="staff">
         <div className="space-y-1">
@@ -157,10 +157,10 @@ const StaffDashboard: React.FC<StaffDashboardProps> = ({ user, stats }) => {
           {/* Content sections */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {/* Pending reviews */}
-            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6">
+            <div className="bg-white/90 dark:bg-gray-900/90 backdrop-blur-lg rounded-xl shadow-sm border border-gray-200 dark:border-gray-800 p-6">
               <div className="flex items-center justify-between mb-4">
                 <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Pending Reviews</h2>
-                <button className="text-sm text-[#C8102E] hover:text-[#DC2626] font-medium">
+                <button className="text-sm text-[#C8102E] dark:text-red-400 hover:text-[#DC2626] dark:hover:text-red-300 font-medium transition-colors">
                   View All
                 </button>
               </div>
@@ -171,19 +171,19 @@ const StaffDashboard: React.FC<StaffDashboardProps> = ({ user, stats }) => {
                   { name: 'Bob Wilson', type: 'Resume', time: '1h ago' },
                   { name: 'Alice Brown', type: 'Application', time: '2h ago' },
                 ].map((review, i) => (
-                  <div key={i} className="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors border border-gray-100 dark:border-gray-600">
+                  <div key={i} className="flex items-center justify-between p-3 rounded-lg hover:bg-gray-100/80 dark:hover:bg-gray-800/80 backdrop-blur-sm transition-all duration-200 border border-gray-100 dark:border-gray-700">
                     <div className="flex items-center space-x-3">
-                      <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#C8102E] to-[#DC2626] flex items-center justify-center text-white text-sm font-semibold">
+                      <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#C8102E] to-[#DC2626] flex items-center justify-center text-white text-sm font-semibold shadow-md">
                         {review.name.split(' ').map(n => n[0]).join('')}
                       </div>
                       <div>
                         <p className="text-sm font-medium text-gray-900 dark:text-white">{review.name}</p>
-                        <p className="text-xs text-gray-500">{review.type}</p>
+                        <p className="text-xs text-gray-500 dark:text-gray-400">{review.type}</p>
                       </div>
                     </div>
                     <div className="text-right">
-                      <p className="text-xs text-gray-500 mb-1">{review.time}</p>
-                      <button className="px-3 py-1 bg-[#C8102E] text-white text-xs rounded-md hover:bg-[#DC2626] transition-colors">
+                      <p className="text-xs text-gray-500 dark:text-gray-400 mb-1">{review.time}</p>
+                      <button className="px-3 py-1 bg-[#C8102E] text-white text-xs rounded-md hover:bg-[#DC2626] transition-colors shadow-sm">
                         Review
                       </button>
                     </div>
@@ -193,10 +193,10 @@ const StaffDashboard: React.FC<StaffDashboardProps> = ({ user, stats }) => {
             </div>
 
             {/* Recent activity */}
-            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6">
+            <div className="bg-white/90 dark:bg-gray-900/90 backdrop-blur-lg rounded-xl shadow-sm border border-gray-200 dark:border-gray-800 p-6">
               <div className="flex items-center justify-between mb-4">
                 <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Recent Activity</h2>
-                <button className="text-sm text-[#C8102E] hover:text-[#DC2626] font-medium">
+                <button className="text-sm text-[#C8102E] dark:text-red-400 hover:text-[#DC2626] dark:hover:text-red-300 font-medium transition-colors">
                   View All
                 </button>
               </div>
@@ -207,11 +207,11 @@ const StaffDashboard: React.FC<StaffDashboardProps> = ({ user, stats }) => {
                   { action: 'Responded to user inquiry', time: '1h ago' },
                   { action: 'Created new career path template', time: '3h ago' },
                 ].map((activity, i) => (
-                  <div key={i} className="flex items-start space-x-3 p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
-                    <div className="w-2 h-2 rounded-full bg-[#C8102E] mt-2" />
+                  <div key={i} className="flex items-start space-x-3 p-3 rounded-lg hover:bg-gray-100/80 dark:hover:bg-gray-800/80 backdrop-blur-sm transition-all duration-200">
+                    <div className="w-2 h-2 rounded-full bg-[#C8102E] dark:bg-red-400 mt-2" />
                     <div className="flex-1">
                       <p className="text-sm text-gray-900 dark:text-white">{activity.action}</p>
-                      <p className="text-xs text-gray-500 mt-1">{activity.time}</p>
+                      <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">{activity.time}</p>
                     </div>
                   </div>
                 ))}
@@ -220,7 +220,7 @@ const StaffDashboard: React.FC<StaffDashboardProps> = ({ user, stats }) => {
           </div>
 
           {/* Quick actions */}
-          <div className="mt-6 bg-gradient-to-r from-[#C8102E] to-[#DC2626] rounded-xl shadow-lg p-6 text-white">
+          <div className="mt-6 bg-gradient-to-r from-[#C8102E] to-[#DC2626] rounded-xl shadow-lg p-6 text-white backdrop-blur-sm">
             <h2 className="text-xl font-bold mb-4">Quick Actions</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <button className="bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-lg p-4 text-left transition-all">

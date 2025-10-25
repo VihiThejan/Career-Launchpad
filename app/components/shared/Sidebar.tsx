@@ -32,8 +32,8 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, children, role }) =>
       {/* Sidebar */}
       <aside
         className={`
-          fixed top-0 left-0 h-full w-64 bg-white dark:bg-gray-800 
-          border-r border-gray-200 dark:border-gray-700 z-50
+          fixed top-0 left-0 h-full w-64 bg-white/90 dark:bg-gray-900/90 backdrop-blur-lg
+          border-r border-gray-200 dark:border-gray-800 z-50
           transform transition-transform duration-300 ease-in-out
           ${isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
         `}
@@ -65,8 +65,8 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, children, role }) =>
         </nav>
 
         {/* Footer */}
-        <div className="h-16 border-t border-gray-200 dark:border-gray-700 px-6 flex items-center">
-          <div className="flex items-center space-x-2 text-xs text-gray-500">
+        <div className="h-16 border-t border-gray-200 dark:border-gray-800 px-6 flex items-center">
+          <div className="flex items-center space-x-2 text-xs text-gray-500 dark:text-gray-400">
             <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
             <span>System Online</span>
           </div>

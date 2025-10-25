@@ -20,7 +20,7 @@ const StatCard: React.FC<StatCardProps> = ({ title, value, icon, trend, color = 
   };
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6 hover:shadow-md transition-shadow">
+    <div className="bg-white/90 dark:bg-gray-900/90 backdrop-blur-lg rounded-xl shadow-sm border border-gray-200 dark:border-gray-800 p-6 hover:shadow-md transition-all duration-200">
       <div className="flex items-start justify-between">
         <div className="flex-1">
           <p className="text-gray-500 dark:text-gray-400 text-sm font-medium mb-1">{title}</p>
@@ -28,7 +28,7 @@ const StatCard: React.FC<StatCardProps> = ({ title, value, icon, trend, color = 
           {trend && (
             <div className="flex items-center space-x-1">
               <svg
-                className={`w-4 h-4 ${trend.isPositive ? 'text-green-500' : 'text-red-500'}`}
+                className={`w-4 h-4 ${trend.isPositive ? 'text-green-500 dark:text-green-400' : 'text-red-500 dark:text-red-400'}`}
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -40,14 +40,14 @@ const StatCard: React.FC<StatCardProps> = ({ title, value, icon, trend, color = 
                   d={trend.isPositive ? 'M5 10l7-7m0 0l7 7m-7-7v18' : 'M19 14l-7 7m0 0l-7-7m7 7V3'}
                 />
               </svg>
-              <span className={`text-sm font-medium ${trend.isPositive ? 'text-green-600' : 'text-red-600'}`}>
+              <span className={`text-sm font-medium ${trend.isPositive ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'}`}>
                 {Math.abs(trend.value)}%
               </span>
-              <span className="text-gray-500 text-sm">vs last month</span>
+              <span className="text-gray-500 dark:text-gray-400 text-sm">vs last month</span>
             </div>
           )}
         </div>
-        <div className={`w-12 h-12 rounded-lg bg-gradient-to-br ${colorClasses[color]} flex items-center justify-center text-white`}>
+        <div className={`w-12 h-12 rounded-lg bg-gradient-to-br ${colorClasses[color]} flex items-center justify-center text-white shadow-md`}>
           {icon}
         </div>
       </div>

@@ -16,7 +16,7 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ user, stats }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:bg-none">
       {/* Sidebar */}
       <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} role="admin">
         <div className="space-y-1">
@@ -169,36 +169,36 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ user, stats }) => {
           {/* Content sections */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {/* Recent users */}
-            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6">
+            <div className="bg-white/90 dark:bg-gray-900/90 backdrop-blur-lg rounded-xl shadow-sm border border-gray-200 dark:border-gray-800 p-6">
               <div className="flex items-center justify-between mb-4">
                 <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Recent Users</h2>
-                <button className="text-sm text-[#012169] hover:text-[#1E3A8A] font-medium">
+                <button className="text-sm text-[#012169] dark:text-blue-400 hover:text-[#1E3A8A] dark:hover:text-blue-300 font-medium transition-colors">
                   View All
                 </button>
               </div>
               <div className="space-y-3">
                 {[1, 2, 3, 4].map((i) => (
-                  <div key={i} className="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                  <div key={i} className="flex items-center justify-between p-3 rounded-lg hover:bg-gray-100/80 dark:hover:bg-gray-800/80 backdrop-blur-sm transition-all duration-200">
                     <div className="flex items-center space-x-3">
-                      <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#012169] to-[#1E3A8A] flex items-center justify-center text-white font-semibold">
+                      <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#012169] to-[#1E3A8A] flex items-center justify-center text-white font-semibold shadow-md">
                         U{i}
                       </div>
                       <div>
                         <p className="text-sm font-medium text-gray-900 dark:text-white">User {i}</p>
-                        <p className="text-xs text-gray-500">user{i}@example.com</p>
+                        <p className="text-xs text-gray-500 dark:text-gray-400">user{i}@example.com</p>
                       </div>
                     </div>
-                    <span className="text-xs text-gray-500">{i}h ago</span>
+                    <span className="text-xs text-gray-500 dark:text-gray-400">{i}h ago</span>
                   </div>
                 ))}
               </div>
             </div>
 
             {/* System activity */}
-            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6">
+            <div className="bg-white/90 dark:bg-gray-900/90 backdrop-blur-lg rounded-xl shadow-sm border border-gray-200 dark:border-gray-800 p-6">
               <div className="flex items-center justify-between mb-4">
                 <h2 className="text-lg font-semibold text-gray-900 dark:text-white">System Activity</h2>
-                <button className="text-sm text-[#012169] hover:text-[#1E3A8A] font-medium">
+                <button className="text-sm text-[#012169] dark:text-blue-400 hover:text-[#1E3A8A] dark:hover:text-blue-300 font-medium transition-colors">
                   View All
                 </button>
               </div>
@@ -209,15 +209,15 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ user, stats }) => {
                   { action: 'Content updated', time: '1h ago', type: 'warning' },
                   { action: 'System backup completed', time: '2h ago', type: 'success' },
                 ].map((activity, i) => (
-                  <div key={i} className="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                  <div key={i} className="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-100/80 dark:hover:bg-gray-800/80 backdrop-blur-sm transition-all duration-200">
                     <div className={`w-2 h-2 rounded-full ${
-                      activity.type === 'success' ? 'bg-green-500' :
-                      activity.type === 'warning' ? 'bg-yellow-500' :
-                      'bg-blue-500'
+                      activity.type === 'success' ? 'bg-green-500 dark:bg-green-400' :
+                      activity.type === 'warning' ? 'bg-yellow-500 dark:bg-yellow-400' :
+                      'bg-blue-500 dark:bg-blue-400'
                     }`} />
                     <div className="flex-1">
                       <p className="text-sm text-gray-900 dark:text-white">{activity.action}</p>
-                      <p className="text-xs text-gray-500">{activity.time}</p>
+                      <p className="text-xs text-gray-500 dark:text-gray-400">{activity.time}</p>
                     </div>
                   </div>
                 ))}

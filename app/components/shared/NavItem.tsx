@@ -15,16 +15,16 @@ const NavItem: React.FC<NavItemProps> = ({ href, icon, label, badge, active = fa
       href={href}
       className={`
         flex items-center justify-between px-4 py-3 rounded-lg mb-1
-        transition-all duration-200 group
+        transition-all duration-200 group backdrop-blur-sm
         ${
           active
             ? 'bg-[#012169] text-white shadow-md'
-            : 'text-gray-700 dark:text-gray-300 hover:bg-[#E8EBF4] dark:hover:bg-gray-700'
+            : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100/80 dark:hover:bg-gray-800/80'
         }
       `}
     >
       <div className="flex items-center space-x-3">
-        <span className={active ? 'text-white' : 'text-gray-500 group-hover:text-[#012169] dark:group-hover:text-white'}>
+        <span className={active ? 'text-white' : 'text-gray-500 dark:text-gray-400 group-hover:text-[#012169] dark:group-hover:text-white transition-colors'}>
           {icon}
         </span>
         <span className="font-medium text-sm">{label}</span>

@@ -20,7 +20,7 @@ const Header: React.FC<HeaderProps> = ({ user, onMenuClick, notifications = 0 })
   };
 
   return (
-    <header className="h-16 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 sticky top-0 z-30">
+    <header className="h-16 bg-white/90 dark:bg-gray-900/90 backdrop-blur-lg border-b border-gray-200 dark:border-gray-800 sticky top-0 z-30">
       <div className="h-full px-4 lg:px-6 flex items-center justify-between">
         {/* Left side */}
         <div className="flex items-center space-x-4">
@@ -40,7 +40,7 @@ const Header: React.FC<HeaderProps> = ({ user, onMenuClick, notifications = 0 })
               <input
                 type="text"
                 placeholder="Search..."
-                className="w-64 px-4 py-2 pl-10 bg-gray-100 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#012169] dark:text-white"
+                className="w-64 px-4 py-2 pl-10 bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#012169] dark:text-white placeholder-gray-400 dark:placeholder-gray-500"
               />
               <svg
                 className="w-5 h-5 absolute left-3 top-2.5 text-gray-400"

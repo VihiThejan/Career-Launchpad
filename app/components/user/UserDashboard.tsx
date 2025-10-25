@@ -16,7 +16,7 @@ const UserDashboard: React.FC<UserDashboardProps> = ({ user, stats }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:bg-none">
       {/* Sidebar */}
       <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} role="user">
         <div className="space-y-1">
@@ -108,15 +108,15 @@ const UserDashboard: React.FC<UserDashboardProps> = ({ user, stats }) => {
 
         <main className="p-6">
           {/* Welcome banner */}
-          <div className="bg-gradient-to-r from-[#1E3A8A] to-[#3B82F6] rounded-xl shadow-lg p-8 mb-6 text-white">
+          <div className="bg-gradient-to-r from-[#1E3A8A] to-[#3B82F6] rounded-xl shadow-lg p-8 mb-6 text-white backdrop-blur-sm">
             <div className="flex flex-col md:flex-row items-start md:items-center justify-between">
               <div className="mb-4 md:mb-0">
-                <h1 className="text-3xl font-bold mb-2">Welcome back, {user.name}! 👋</h1>
+                <h1 className="text-3xl font-bold mb-2 text-shadow-lg">Welcome back, {user.name}! 👋</h1>
                 <p className="text-blue-100">
                   Continue your journey to achieving your career goals
                 </p>
               </div>
-              <button className="bg-white text-[#1E3A8A] px-6 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors shadow-md">
+              <button className="bg-white text-[#1E3A8A] px-6 py-3 rounded-lg font-semibold hover:bg-blue-50 hover:scale-105 transition-all duration-200 shadow-md">
                 Take Assessment
               </button>
             </div>
@@ -170,10 +170,10 @@ const UserDashboard: React.FC<UserDashboardProps> = ({ user, stats }) => {
           {/* Content sections */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {/* Continue learning */}
-            <div className="lg:col-span-2 bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6">
+            <div className="lg:col-span-2 bg-white/90 dark:bg-gray-900/90 backdrop-blur-lg rounded-xl shadow-sm border border-gray-200 dark:border-gray-800 p-6">
               <div className="flex items-center justify-between mb-4">
                 <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Continue Learning</h2>
-                <button className="text-sm text-[#1E3A8A] hover:text-[#3B82F6] font-medium">
+                <button className="text-sm text-[#1E3A8A] dark:text-blue-400 hover:text-[#3B82F6] dark:hover:text-blue-300 font-medium transition-colors">
                   View All
                 </button>
               </div>
@@ -183,37 +183,37 @@ const UserDashboard: React.FC<UserDashboardProps> = ({ user, stats }) => {
                   { course: 'Python for Data Science', progress: 45, time: '5h left' },
                   { course: 'UI/UX Design Basics', progress: 90, time: '30m left' },
                 ].map((course, i) => (
-                  <div key={i} className="p-4 rounded-lg border border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                  <div key={i} className="p-4 rounded-lg border border-gray-100 dark:border-gray-700 hover:bg-gray-100/80 dark:hover:bg-gray-800/80 backdrop-blur-sm transition-all duration-200">
                     <div className="flex items-center justify-between mb-3">
                       <div className="flex items-center space-x-3">
-                        <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-[#1E3A8A] to-[#3B82F6] flex items-center justify-center text-white">
+                        <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-[#1E3A8A] to-[#3B82F6] flex items-center justify-center text-white shadow-md">
                           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
                           </svg>
                         </div>
                         <div>
                           <p className="font-medium text-gray-900 dark:text-white">{course.course}</p>
-                          <p className="text-sm text-gray-500">{course.time}</p>
+                          <p className="text-sm text-gray-500 dark:text-gray-400">{course.time}</p>
                         </div>
                       </div>
-                      <button className="px-4 py-2 bg-[#1E3A8A] text-white text-sm rounded-lg hover:bg-[#3B82F6] transition-colors">
+                      <button className="px-4 py-2 bg-[#1E3A8A] text-white text-sm rounded-lg hover:bg-[#3B82F6] hover:scale-105 transition-all duration-200 shadow-sm">
                         Continue
                       </button>
                     </div>
                     <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
                       <div
-                        className="bg-gradient-to-r from-[#1E3A8A] to-[#3B82F6] h-2 rounded-full transition-all"
+                        className="bg-gradient-to-r from-[#1E3A8A] to-[#3B82F6] h-2 rounded-full transition-all shadow-sm"
                         style={{ width: `${course.progress}%` }}
                       />
                     </div>
-                    <p className="text-xs text-gray-500 mt-1 text-right">{course.progress}% complete</p>
+                    <p className="text-xs text-gray-500 dark:text-gray-400 mt-1 text-right">{course.progress}% complete</p>
                   </div>
                 ))}
               </div>
             </div>
 
             {/* AI Career Advisor */}
-            <div className="bg-gradient-to-br from-[#012169] to-[#1E3A8A] rounded-xl shadow-lg p-6 text-white">
+            <div className="bg-gradient-to-br from-[#012169] to-[#1E3A8A] rounded-xl shadow-lg p-6 text-white backdrop-blur-sm">
               <div className="flex items-center space-x-3 mb-4">
                 <div className="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center">
                   <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -243,10 +243,10 @@ const UserDashboard: React.FC<UserDashboardProps> = ({ user, stats }) => {
           </div>
 
           {/* Recommended jobs */}
-          <div className="mt-6 bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6">
+          <div className="mt-6 bg-white/90 dark:bg-gray-900/90 backdrop-blur-lg rounded-xl shadow-sm border border-gray-200 dark:border-gray-800 p-6">
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Recommended Jobs</h2>
-              <button className="text-sm text-[#1E3A8A] hover:text-[#3B82F6] font-medium">
+              <button className="text-sm text-[#1E3A8A] dark:text-blue-400 hover:text-[#3B82F6] dark:hover:text-blue-300 font-medium transition-colors">
                 View All
               </button>
             </div>
@@ -256,18 +256,18 @@ const UserDashboard: React.FC<UserDashboardProps> = ({ user, stats }) => {
                 { title: 'Full Stack Engineer', company: 'StartupXYZ', location: 'London, UK', salary: '$70k-$100k', match: 88 },
                 { title: 'Frontend Lead', company: 'Digital Agency', location: 'Manchester, UK', salary: '$90k-$130k', match: 92 },
               ].map((job, i) => (
-                <div key={i} className="p-4 rounded-lg border border-gray-200 dark:border-gray-700 hover:shadow-md transition-all">
+                <div key={i} className="p-4 rounded-lg border border-gray-200 dark:border-gray-700 hover:shadow-md hover:scale-[1.02] transition-all duration-200 backdrop-blur-sm">
                   <div className="flex items-start justify-between mb-3">
-                    <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-[#1E3A8A] to-[#3B82F6] flex items-center justify-center text-white font-bold">
+                    <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-[#1E3A8A] to-[#3B82F6] flex items-center justify-center text-white font-bold shadow-md">
                       {job.company[0]}
                     </div>
-                    <span className="px-2 py-1 bg-green-100 text-green-700 text-xs rounded-full font-semibold">
+                    <span className="px-2 py-1 bg-green-100 dark:bg-green-900/50 text-green-700 dark:text-green-400 text-xs rounded-full font-semibold">
                       {job.match}% match
                     </span>
                   </div>
                   <h3 className="font-semibold text-gray-900 dark:text-white mb-1">{job.title}</h3>
                   <p className="text-sm text-gray-600 dark:text-gray-400 mb-1">{job.company}</p>
-                  <p className="text-xs text-gray-500 mb-2">{job.location}</p>
+                  <p className="text-xs text-gray-500 dark:text-gray-400 mb-2">{job.location}</p>
                   <p className="text-sm font-semibold text-[#1E3A8A] mb-3">{job.salary}</p>
                   <button className="w-full px-4 py-2 bg-[#1E3A8A] text-white text-sm rounded-lg hover:bg-[#3B82F6] transition-colors">
                     Apply Now
