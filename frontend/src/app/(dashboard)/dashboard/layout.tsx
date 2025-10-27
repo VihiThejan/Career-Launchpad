@@ -1,8 +1,6 @@
-'use client';
-
-import { Sidebar } from '@/components/layout/Sidebar';
-import { Header } from '@/components/layout/Header';
-import { MobileMenu } from '@/components/layout/MobileMenu';
+import { Sidebar } from '@/components/layout/Sidebar/Sidebar';
+import { Header } from '@/components/layout/Header/Header';
+import { MobileMenu } from '@/components/layout/MobileMenu/MobileMenu';
 
 export default function DashboardLayout({
   children,

@@ -2,7 +2,6 @@
 
 import { Card } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
-import { Badge } from '@/components/ui/Badge';
 import { ProgressBar } from '@/components/ui/ProgressBar';
 import {
   TrendingUp,
@@ -28,7 +27,7 @@ export default function ProgressPage() {
       id: 1,
       title: 'Fast Learner',
       description: 'Complete 5 courses in a month',
-      icon: TrendingUp,
+      iconType: 'TrendingUp',
       earned: true,
       date: 'Oct 15, 2025',
     },
@@ -36,7 +35,7 @@ export default function ProgressPage() {
       id: 2,
       title: 'Certification Master',
       description: 'Earn 3 certifications',
-      icon: Award,
+      iconType: 'Award',
       earned: true,
       date: 'Sep 28, 2025',
     },
@@ -44,11 +43,20 @@ export default function ProgressPage() {
       id: 3,
       title: 'Code Warrior',
       description: 'Complete 100 coding challenges',
-      icon: Target,
+      iconType: 'Target',
       earned: false,
       progress: 67,
     },
   ];
+
+  const getAchievementIcon = (iconType: string) => {
+    switch (iconType) {
+      case 'TrendingUp': return TrendingUp;
+      case 'Award': return Award;
+      case 'Target': return Target;
+      default: return Award;
+    }
+  };
 
   const recentActivities = [
     {
@@ -183,7 +191,7 @@ export default function ProgressPage() {
           <Card title="Achievements" subtitle={`${achievements.filter((a) => a.earned).length} earned`}>
             <div className="space-y-4">
               {achievements.map((achievement) => {
-                const Icon = achievement.icon;
+                const Icon = getAchievementIcon(achievement.iconType);
                 return (
                   <div
                     key={achievement.id}

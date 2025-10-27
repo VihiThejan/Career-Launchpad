@@ -12,15 +12,15 @@ import { Input } from '@/components/ui/Input';
 import { Checkbox } from '@/components/ui/Checkbox';
 import { Card } from '@/components/ui/Card';
 import { useToast } from '@/hooks/useToast';
-import { authService } from '@/services/auth.service';
 import { useAuthStore } from '@/store';
 import { loginSchema } from '@/lib/validation';
 import type { LoginCredentials } from '@/types/user.types';
+import { UserRole } from '@/types/user.types';
 
 export default function LoginPage() {
   const router = useRouter();
   const { showToast } = useToast();
-  const { login } = useAuthStore();
+  const { setAuth } = useAuthStore();
   const [showPassword, setShowPassword] = useState(false);
 
   const {
@@ -31,17 +31,37 @@ export default function LoginPage() {
     resolver: zodResolver(loginSchema),
   });
 
+  // Sample login mutation - using mock data for now
   const loginMutation = useMutation({
-    mutationFn: (credentials: LoginCredentials) =>
-      authService.login(credentials),
+    mutationFn: async (credentials: LoginCredentials) => {
+      // Simulate API delay
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      // Mock authentication - accept any email/password for demo
+      return {
+        user: {
+          id: '1',
+          email: credentials.email,
+          firstName: 'John',
+          lastName: 'Doe',
+          avatar: '',
+          role: UserRole.USER,
+          isEmailVerified: true,
+          createdAt: new Date().toISOString(),
+          updatedAt: new Date().toISOString(),
+        },
+        accessToken: 'mock-access-token-12345',
+        refreshToken: 'mock-refresh-token-67890',
+      };
+    },
     onSuccess: (data) => {
-      login(data.user, data.accessToken);
-      showToast('Login successful!', { type: 'success' });
+      setAuth(data.user, data.accessToken, data.refreshToken);
+      showToast('Login successful! Welcome back!', { type: 'success' });
       router.push('/dashboard');
     },
-    onError: (error: Error) => {
+    onError: () => {
       showToast(
-        'Login failed. Please check your credentials.',
+        'Login failed. Please try again.',
         { type: 'error' }
       );
     },
@@ -64,6 +84,13 @@ export default function LoginPage() {
       <div className="text-center mb-8">
         <h1 className="text-3xl font-bold text-gray-900 mb-2">Welcome Back</h1>
         <p className="text-gray-600">Sign in to continue your learning journey</p>
+        
+        {/* Demo Credentials */}
+        <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-lg text-left">
+          <p className="text-xs font-semibold text-blue-900 mb-1">📝 Demo Mode - Use any credentials:</p>
+          <p className="text-xs text-blue-700">Email: demo@example.com</p>
+          <p className="text-xs text-blue-700">Password: password123</p>
+        </div>
       </div>
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">

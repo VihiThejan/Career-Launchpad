@@ -4,7 +4,6 @@ import { Card } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
 import { ProgressBar } from '@/components/ui/ProgressBar';
 import { Badge } from '@/components/ui/Badge';
-import { Avatar } from '@/components/ui/Avatar';
 import {
   BookOpen,
   Briefcase,
@@ -34,7 +33,7 @@ export default function DashboardPage() {
       label: 'Courses Enrolled',
       value: '12',
       change: '+2 this month',
-      icon: BookOpen,
+      iconType: 'BookOpen',
       color: 'text-blue-600',
       bgColor: 'bg-blue-50',
     },
@@ -42,7 +41,7 @@ export default function DashboardPage() {
       label: 'Skills Acquired',
       value: '24',
       change: '+5 this month',
-      icon: Award,
+      iconType: 'Award',
       color: 'text-green-600',
       bgColor: 'bg-green-50',
     },
@@ -50,7 +49,7 @@ export default function DashboardPage() {
       label: 'Job Applications',
       value: '8',
       change: '+3 this week',
-      icon: Briefcase,
+      iconType: 'Briefcase',
       color: 'text-purple-600',
       bgColor: 'bg-purple-50',
     },
@@ -58,11 +57,21 @@ export default function DashboardPage() {
       label: 'Learning Hours',
       value: '47',
       change: '+12 this week',
-      icon: Clock,
+      iconType: 'Clock',
       color: 'text-orange-600',
       bgColor: 'bg-orange-50',
     },
   ];
+
+  const getIcon = (iconType: string) => {
+    switch (iconType) {
+      case 'BookOpen': return BookOpen;
+      case 'Award': return Award;
+      case 'Briefcase': return Briefcase;
+      case 'Clock': return Clock;
+      default: return BookOpen;
+    }
+  };
 
   const activeCourses = [
     {
@@ -154,7 +163,7 @@ export default function DashboardPage() {
       {/* Stats Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {stats.map((stat) => {
-          const Icon = stat.icon;
+          const Icon = getIcon(stat.iconType);
           return (
             <Card key={stat.label} className="relative overflow-hidden">
               <div className="flex items-start justify-between">

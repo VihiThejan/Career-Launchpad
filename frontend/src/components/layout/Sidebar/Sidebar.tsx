@@ -20,22 +20,38 @@ import { useUIStore } from '@/store';
 interface SidebarItem {
   label: string;
   href: string;
-  icon: React.ElementType;
+  iconType: string;
   badge?: number;
 }
 
 const sidebarItems: SidebarItem[] = [
-  { label: 'Dashboard', href: '/dashboard', icon: Home },
-  { label: 'Courses', href: '/dashboard/courses', icon: BookOpen },
-  { label: 'Jobs', href: '/dashboard/jobs', icon: Briefcase },
-  { label: 'Mentors', href: '/dashboard/mentors', icon: Users },
-  { label: 'Assessments', href: '/dashboard/assessments', icon: ClipboardList },
-  { label: 'Messages', href: '/dashboard/messages', icon: MessageSquare, badge: 3 },
-  { label: 'Resume', href: '/dashboard/resume', icon: FileText },
-  { label: 'Skills', href: '/dashboard/skills', icon: Award },
-  { label: 'Progress', href: '/dashboard/progress', icon: TrendingUp },
-  { label: 'Settings', href: '/dashboard/settings', icon: Settings },
+  { label: 'Dashboard', href: '/dashboard', iconType: 'Home' },
+  { label: 'Courses', href: '/dashboard/courses', iconType: 'BookOpen' },
+  { label: 'Jobs', href: '/dashboard/jobs', iconType: 'Briefcase' },
+  { label: 'Mentors', href: '/dashboard/mentors', iconType: 'Users' },
+  { label: 'Assessments', href: '/dashboard/assessments', iconType: 'ClipboardList' },
+  { label: 'Messages', href: '/dashboard/messages', iconType: 'MessageSquare', badge: 3 },
+  { label: 'Resume', href: '/dashboard/resume', iconType: 'FileText' },
+  { label: 'Skills', href: '/dashboard/skills', iconType: 'Award' },
+  { label: 'Progress', href: '/dashboard/progress', iconType: 'TrendingUp' },
+  { label: 'Settings', href: '/dashboard/settings', iconType: 'Settings' },
 ];
+
+const getIcon = (iconType: string) => {
+  switch (iconType) {
+    case 'Home': return Home;
+    case 'BookOpen': return BookOpen;
+    case 'Briefcase': return Briefcase;
+    case 'Users': return Users;
+    case 'ClipboardList': return ClipboardList;
+    case 'MessageSquare': return MessageSquare;
+    case 'FileText': return FileText;
+    case 'Award': return Award;
+    case 'TrendingUp': return TrendingUp;
+    case 'Settings': return Settings;
+    default: return Home;
+  }
+};
 
 export const Sidebar = () => {
   const pathname = usePathname();
@@ -60,7 +76,7 @@ export const Sidebar = () => {
       >
         <nav className="p-4 space-y-1">
           {sidebarItems.map((item) => {
-            const Icon = item.icon;
+            const Icon = getIcon(item.iconType);
             const isActive = pathname === item.href;
 
             return (
