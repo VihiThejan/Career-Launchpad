@@ -3,8 +3,8 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { AppError } from '../middleware/errorHandler';
 import prisma from '../config/database';
-import { sendEmail } from '../services/email.service';
-import crypto from 'crypto';
+// import { sendEmail } from '../services/email.service'; // TODO: Uncomment when email service is implemented
+// import crypto from 'crypto'; // TODO: Uncomment when token generation is implemented
 
 // Register user
 export const register = async (req: Request, res: Response, next: NextFunction) => {
@@ -38,14 +38,14 @@ export const register = async (req: Request, res: Response, next: NextFunction) 
       },
     });
 
-    // Generate verification token
-    const verificationToken = crypto.randomBytes(32).toString('hex');
+    // Generate verification token (will be used when email service is implemented)
+    // const _verificationToken = crypto.randomBytes(32).toString('hex');
     
     // TODO: Store verification token and send email
     // await sendEmail({
     //   to: email,
     //   subject: 'Verify your email',
-    //   text: `Click here to verify: ${process.env.FRONTEND_URL}/verify-email/${verificationToken}`,
+    //   text: `Click here to verify: ${process.env.FRONTEND_URL}/verify-email/${_verificationToken}`,
     // });
 
     res.status(201).json({
@@ -87,15 +87,15 @@ export const login = async (req: Request, res: Response, next: NextFunction) => 
     // Generate JWT token
     const token = jwt.sign(
       { id: user.id, email: user.email },
-      process.env.JWT_SECRET!,
-      { expiresIn: process.env.JWT_EXPIRE || '7d' }
+      process.env.JWT_SECRET as string,
+      { expiresIn: '7d' }
     );
 
     // Generate refresh token
     const refreshToken = jwt.sign(
       { id: user.id },
-      process.env.JWT_REFRESH_SECRET!,
-      { expiresIn: process.env.JWT_REFRESH_EXPIRE || '30d' }
+      process.env.JWT_REFRESH_SECRET as string,
+      { expiresIn: '30d' }
     );
 
     res.json({
@@ -117,7 +117,7 @@ export const login = async (req: Request, res: Response, next: NextFunction) => 
 };
 
 // Logout (client-side handled, but endpoint for consistency)
-export const logout = async (req: Request, res: Response) => {
+export const logout = async (_req: Request, res: Response): Promise<void> => {
   res.json({
     success: true,
     message: 'Logout successful',
@@ -141,8 +141,8 @@ export const refreshToken = async (req: Request, res: Response, next: NextFuncti
     // Generate new access token
     const newToken = jwt.sign(
       { id: decoded.id },
-      process.env.JWT_SECRET!,
-      { expiresIn: process.env.JWT_EXPIRE || '7d' }
+      process.env.JWT_SECRET as string,
+      { expiresIn: '7d' }
     );
 
     res.json({
@@ -155,22 +155,23 @@ export const refreshToken = async (req: Request, res: Response, next: NextFuncti
 };
 
 // Forgot password
-export const forgotPassword = async (req: Request, res: Response, next: NextFunction) => {
+export const forgotPassword = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
     const { email } = req.body;
 
     const user = await prisma.user.findUnique({ where: { email } });
     if (!user) {
       // Don't reveal if user exists
-      return res.json({
+      res.json({
         success: true,
         message: 'If an account exists, a password reset email has been sent',
       });
+      return;
     }
 
-    // Generate reset token
-    const resetToken = crypto.randomBytes(32).toString('hex');
-    const resetTokenExpiry = new Date(Date.now() + 3600000); // 1 hour
+    // Generate reset token (will be used when email service is implemented)
+    // const resetToken = crypto.randomBytes(32).toString('hex');
+    // const resetTokenExpiry = new Date(Date.now() + 3600000); // 1 hour
 
     // TODO: Store reset token in database
     // TODO: Send email with reset link
@@ -187,7 +188,7 @@ export const forgotPassword = async (req: Request, res: Response, next: NextFunc
 // Reset password
 export const resetPassword = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const { token, password } = req.body;
+    const { token: _token, password: _password } = req.body;
 
     // TODO: Verify reset token and update password
     // This requires adding reset token fields to User model
@@ -204,7 +205,7 @@ export const resetPassword = async (req: Request, res: Response, next: NextFunct
 // Verify email
 export const verifyEmail = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const { token } = req.params;
+    const { token: _token } = req.params;
 
     // TODO: Verify email token and update user
     // This requires adding email verification fields to User model

@@ -3,7 +3,7 @@ import { AuthRequest } from '../middleware/auth';
 import openai, { openAIConfig } from '../config/openai';
 import { cacheHelper } from '../config/redis';
 
-export const chatWithAI = async (req: AuthRequest, res: Response, next: NextFunction) => {
+export const chatWithAI = async (req: AuthRequest, res: Response, next: NextFunction): Promise<void> => {
   try {
     const { message } = req.body;
 
@@ -31,7 +31,7 @@ export const chatWithAI = async (req: AuthRequest, res: Response, next: NextFunc
   }
 };
 
-export const analyzeResume = async (req: AuthRequest, res: Response, next: NextFunction) => {
+export const analyzeResume = async (req: AuthRequest, res: Response, next: NextFunction): Promise<void> => {
   try {
     const { resumeText } = req.body;
 
@@ -40,7 +40,8 @@ export const analyzeResume = async (req: AuthRequest, res: Response, next: NextF
     const cached = await cacheHelper.get(cacheKey);
     
     if (cached) {
-      return res.json({ success: true, data: cached, cached: true });
+      res.json({ success: true, data: cached, cached: true });
+      return;
     }
 
     const completion = await openai.chat.completions.create({
@@ -70,7 +71,7 @@ export const analyzeResume = async (req: AuthRequest, res: Response, next: NextF
   }
 };
 
-export const generateCoverLetter = async (req: AuthRequest, res: Response, next: NextFunction) => {
+export const generateCoverLetter = async (req: AuthRequest, res: Response, next: NextFunction): Promise<void> => {
   try {
     const { jobDescription, userProfile } = req.body;
 
@@ -101,7 +102,7 @@ export const generateCoverLetter = async (req: AuthRequest, res: Response, next:
   }
 };
 
-export const getCareerAdvice = async (req: AuthRequest, res: Response, next: NextFunction) => {
+export const getCareerAdvice = async (req: AuthRequest, res: Response, next: NextFunction): Promise<void> => {
   try {
     const { question } = req.body;
 
@@ -130,7 +131,7 @@ export const getCareerAdvice = async (req: AuthRequest, res: Response, next: Nex
   }
 };
 
-export const optimizeLinkedInProfile = async (req: AuthRequest, res: Response, next: NextFunction) => {
+export const optimizeLinkedInProfile = async (req: AuthRequest, res: Response, next: NextFunction): Promise<void> => {
   try {
     const { profileData } = req.body;
 

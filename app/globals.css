@@ -1,10 +1,9 @@
 @import "tailwindcss";
 
-/* Import Modern Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
-
 /* UK Flag Theme Colors + Modern Dark/Light Mode */
 :root {
+  /* Import Modern Font - Inter */
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   /* UK Flag Theme Colors */
   --uk-blue: #012169;
   --uk-red: #C8102E;
@@ -44,7 +43,7 @@ html {
 body {
   background: linear-gradient(135deg, #0A0A0F 0%, #13131A 50%, #0A0A0F 100%);
   color: white;
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: var(--font-inter), 'Inter', system-ui, sans-serif;
   overflow-x: hidden;
   margin: 0;
   padding: 0;
