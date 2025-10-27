@@ -1,4 +1,4 @@
-# Cloudflare Pages - Quick Fix (Using @cloudflare/next-on-pages)
+# Cloudflare Pages - Quick Fix
 
 ## ✅ Correct Configuration
 
@@ -9,26 +9,18 @@ In your **Cloudflare Pages Dashboard**, set:
 | Setting | Value |
 |---------|-------|
 | **Framework preset** | Next.js |
-| **Build command** | `npm ci && npx @cloudflare/next-on-pages@1` |
-| **Build output directory** | `.vercel/output/static` |
-| **Root directory** | `frontend` |
+| **Build command** | `npm ci && npm run build` |
+| **Build output directory** | `.next` |
+| **Root directory** | (leave blank - use root) |
 | **Node version** | `20` or `22` |
+| **Environment variables** | `NODE_VERSION=20` |
 
 ### Why This Works
 
-- **Root directory = `frontend`**: Tells Cloudflare to work inside the frontend folder
-- **Build command**: Uses `@cloudflare/next-on-pages` adapter to build Next.js for Cloudflare Pages
-- **Build output**: `.vercel/output/static` (the output from @cloudflare/next-on-pages)
-
-### Local Testing
-
-Test the Cloudflare build locally:
-
-```bash
-cd frontend
-npm run pages:build
-npm run preview
-```
+- **Root directory**: Left blank because Next.js is in the project root
+- **Build command**: Standard Next.js build (Cloudflare Pages has native Next.js support)
+- **Build output**: `.next` (standard Next.js output directory)
+- **Native Support**: Cloudflare Pages natively supports Next.js 13+ with App Router
 
 ### Steps to Apply
 
@@ -36,17 +28,28 @@ npm run preview
 2. Click: **Settings** → **Builds & deployments**
 3. Click: **Edit configuration**
 4. Update all fields as shown in the table above
-5. Click: **Save**
-6. Go to: **Deployments** → Click **Retry deployment**
+5. **Important**: Clear the "Root directory" field (leave it blank)
+6. Set Environment Variables:
+   - Click **Environment variables**
+   - Add: `NODE_VERSION` = `20`
+7. Click: **Save**
+8. Go to: **Deployments** → Click **Retry deployment**
 
 ## Configuration Files
 
 The following files are configured for Cloudflare Pages:
 
-- `wrangler.toml` - Points to `frontend/.vercel/output/static`
-- `.cloudflare/config.json` - Build command with `@cloudflare/next-on-pages@1`
-- `package.json` - Added `pages:build`, `preview`, and `deploy` scripts
+- `wrangler.toml` - Points to `.next` output directory
+- `.cloudflare/config.json` - Standard Next.js build command
+- `package.json` - Standard Next.js scripts
+
+## Important Notes
+
+- ✅ Cloudflare Pages has **native Next.js support** (no adapter needed)
+- ✅ Supports App Router, Server Components, API Routes
+- ✅ Works with Next.js 13, 14, 15, and 16
+- ⚠️  Some Next.js features may have limitations on Cloudflare (check docs)
 
 ## Done! 🎉
 
-Your deployment should now succeed with the Cloudflare-optimized Next.js build.
+Your deployment should now succeed with Cloudflare's native Next.js support!

@@ -1,7 +1,7 @@
 {
   "version": 1,
   "build": {
-    "command": "cd frontend && npm ci && npx @cloudflare/next-on-pages@1",
+    "command": "npm ci && npm run build",
     "cwd": "/"
   }
 }
