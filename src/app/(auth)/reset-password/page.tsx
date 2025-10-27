@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, Suspense } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter, useSearchParams } from 'next/navigation';
@@ -13,6 +13,7 @@ import { Input } from '@/components/ui/Input';
 import { Card } from '@/components/ui/Card';
 import { useToast } from '@/hooks/useToast';
 import { authService } from '@/services/auth.service';
+import { LoadingSpinner } from '@/components/shared/LoadingSpinner';
 
 const resetPasswordSchema = z
   .object({
@@ -32,7 +33,7 @@ const resetPasswordSchema = z
 
 type ResetPasswordData = z.infer<typeof resetPasswordSchema>;
 
-export default function ResetPasswordPage() {
+function ResetPasswordForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { showToast } = useToast();
@@ -198,5 +199,17 @@ export default function ResetPasswordPage() {
         </Link>
       </form>
     </Card>
+  );
+}
+
+export default function ResetPasswordPage() {
+  return (
+    <Suspense fallback={
+      <div className="flex items-center justify-center min-h-screen">
+        <LoadingSpinner size="lg" text="Loading..." />
+      </div>
+    }>
+      <ResetPasswordForm />
+    </Suspense>
   );
 }

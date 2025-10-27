@@ -1,10 +1,10 @@
 'use client';
 
-import { InputHTMLAttributes, forwardRef } from 'react';
+import { InputHTMLAttributes, forwardRef, ReactNode } from 'react';
 import { cn } from '@/lib/utils';
 
 export interface CheckboxProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type'> {
-  label?: string;
+  label?: ReactNode;
   error?: string;
   helperText?: string;
 }

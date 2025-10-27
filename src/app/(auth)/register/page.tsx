@@ -14,13 +14,13 @@ import { Card } from '@/components/ui/Card';
 import { useToast } from '@/hooks/useToast';
 import { authService } from '@/services/auth.service';
 import { useAuthStore } from '@/store';
-import { registerSchema } from '@/lib/validation';
+import { registerSchema, type RegisterFormData } from '@/lib/validation';
 import type { RegisterData } from '@/types/user.types';
 
 export default function RegisterPage() {
   const router = useRouter();
   const { showToast } = useToast();
-  const { login } = useAuthStore();
+  const { setAuth } = useAuthStore();
   const [showPassword, setShowPassword] = useState(false);
   const [password, setPassword] = useState('');
 
@@ -29,14 +29,14 @@ export default function RegisterPage() {
     handleSubmit,
     formState: { errors },
     watch,
-  } = useForm<RegisterData>({
+  } = useForm<RegisterFormData>({
     resolver: zodResolver(registerSchema),
   });
 
   const registerMutation = useMutation({
     mutationFn: (data: RegisterData) => authService.register(data),
     onSuccess: (data) => {
-      login(data.user, data.accessToken);
+      setAuth(data.user, data.accessToken, data.refreshToken);
       showToast('Account created successfully!', { type: 'success' });
       router.push('/onboarding');
     },
@@ -45,8 +45,10 @@ export default function RegisterPage() {
     },
   });
 
-  const onSubmit = (data: RegisterData) => {
-    registerMutation.mutate(data);
+  const onSubmit = (formData: RegisterFormData) => {
+    // Convert form data to API data (remove confirmPassword)
+    const { confirmPassword, ...registerData } = formData;
+    registerMutation.mutate(registerData);
   };
 
   // Password strength calculation

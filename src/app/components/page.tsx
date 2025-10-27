@@ -7,7 +7,7 @@ import { Card } from '@/components/ui/Card';
 import { Modal } from '@/components/ui/Modal';
 import { Badge } from '@/components/ui/Badge';
 import { ProgressBar } from '@/components/ui/ProgressBar';
-import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
+import { LoadingSpinner } from '@/components/shared/LoadingSpinner';
 import { Select } from '@/components/ui/Select';
 import { Tabs } from '@/components/ui/Tabs';
 import { Tooltip } from '@/components/ui/Tooltip';
@@ -18,7 +18,6 @@ import { Search, Mail, Download, Trash2 } from 'lucide-react';
 
 export default function ComponentsPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [activeTab, setActiveTab] = useState('tab1');
   const [checkboxValue, setCheckboxValue] = useState(false);
   const [selectedOption, setSelectedOption] = useState('');
 
@@ -141,15 +140,15 @@ export default function ComponentsPage() {
         <Card title="Badges" className="mb-8">
           <div className="space-y-4">
             <div className="flex flex-wrap gap-3">
-              <Badge variant="primary">Primary</Badge>
+              <Badge variant="default">Default</Badge>
               <Badge variant="success">Success</Badge>
               <Badge variant="warning">Warning</Badge>
               <Badge variant="danger">Danger</Badge>
               <Badge variant="info">Info</Badge>
-              <Badge variant="gray">Gray</Badge>
+              <Badge variant="secondary">Secondary</Badge>
             </div>
             <div className="flex flex-wrap gap-3">
-              <Badge variant="primary" dot>With Dot</Badge>
+              <Badge variant="default" dot>With Dot</Badge>
               <Badge variant="success" size="sm">Small</Badge>
               <Badge variant="warning" size="md">Medium</Badge>
               <Badge variant="danger" size="lg">Large</Badge>
@@ -185,7 +184,7 @@ export default function ComponentsPage() {
         {/* Progress Bars */}
         <Card title="Progress Bars" className="mb-8">
           <div className="space-y-4">
-            <ProgressBar value={25} variant="primary" showLabel />
+            <ProgressBar value={25} variant="default" showLabel />
             <ProgressBar value={50} variant="success" showLabel />
             <ProgressBar value={75} variant="warning" showLabel />
             <ProgressBar value={90} variant="danger" showLabel />
@@ -213,17 +212,15 @@ export default function ComponentsPage() {
                   { id: 'tab2', label: 'Settings', content: <div className="p-4">Settings content here</div> },
                   { id: 'tab3', label: 'Notifications', content: <div className="p-4">Notifications content here</div> },
                 ]}
-                activeTab={activeTab}
-                onChange={setActiveTab}
               />
             </div>
             <div>
               <h4 className="text-sm font-medium text-gray-700 mb-3">Pills Variant</h4>
               <Tabs
                 tabs={[
-                  { id: 'tab1', label: 'Overview' },
-                  { id: 'tab2', label: 'Analytics' },
-                  { id: 'tab3', label: 'Reports' },
+                  { id: 'tab1', label: 'Overview', content: <div className="p-4">Overview content here</div> },
+                  { id: 'tab2', label: 'Analytics', content: <div className="p-4">Analytics content here</div> },
+                  { id: 'tab3', label: 'Reports', content: <div className="p-4">Reports content here</div> },
                 ]}
                 variant="pills"
               />
@@ -232,9 +229,9 @@ export default function ComponentsPage() {
               <h4 className="text-sm font-medium text-gray-700 mb-3">Underline Variant</h4>
               <Tabs
                 tabs={[
-                  { id: 'tab1', label: 'Home' },
-                  { id: 'tab2', label: 'Messages' },
-                  { id: 'tab3', label: 'Settings' },
+                  { id: 'tab1', label: 'Home', content: <div className="p-4">Home content here</div> },
+                  { id: 'tab2', label: 'Messages', content: <div className="p-4">Messages content here</div> },
+                  { id: 'tab3', label: 'Settings', content: <div className="p-4">Settings content here</div> },
                 ]}
                 variant="underline"
               />

@@ -18,8 +18,8 @@ class AuthService {
     );
     
     // Store tokens
-    if (response.data.token) {
-      localStorage.setItem('accessToken', response.data.token);
+    if (response.data.accessToken) {
+      localStorage.setItem('accessToken', response.data.accessToken);
       if (response.data.refreshToken) {
         localStorage.setItem('refreshToken', response.data.refreshToken);
       }
