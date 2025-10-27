@@ -1,0 +1,7 @@
+{
+  "version": 1,
+  "build": {
+    "command": "cd frontend && npm ci && npm run build",
+    "cwd": "/"
+  }
+}
