@@ -1,4 +1,4 @@
 # Cloudflare Pages configuration for Next.js
 name = "career-launchpad"
 compatibility_date = "2025-10-27"
-pages_build_output_dir = ".vercel/output/static"
+pages_build_output_dir = "out"

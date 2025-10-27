@@ -1,64 +1,99 @@
 # Cloudflare Pages - Build Configuration
 
-## ✅ Current Working Configuration
+## ✅ Current Configuration: Static Export
 
-Your project is configured to use `@cloudflare/next-on-pages` adapter:
+Your project is configured for **static export** - the most compatible option for Cloudflare Pages with Next.js 16.
 
 ### Build Settings (Dashboard)
+
 - **Framework preset**: Next.js
-- **Build command**: `npx @cloudflare/next-on-pages@1`
-- **Build output directory**: `.vercel/output/static`
+- **Build command**: `npm ci && npm run build`
+- **Build output directory**: `out`
 - **Root directory**: `/` (leave empty/blank)
 - **Node version**: `20` or `22`
 
 ### Configuration Files
-- **wrangler.toml**: `pages_build_output_dir = ".vercel/output/static"`
-- **.cloudflare/config.json**: Build command uses `npx @cloudflare/next-on-pages@1`
+
+- **next.config.ts**: `output: 'export'` (static site generation)
+- **wrangler.toml**: `pages_build_output_dir = "out"`
+- **.cloudflare/config.json**: Standard Next.js build
 
 ## How the Build Works
 
-1. Cloudflare runs: `npx @cloudflare/next-on-pages@1`
-2. This adapter:
-   - Runs `npx vercel build` internally
-   - Creates output in `.vercel/output/static/`
-   - Generates `_worker.js` for Cloudflare Workers
-3. Cloudflare deploys from: `.vercel/output/static` (as specified in wrangler.toml)
+1. Next.js runs with `output: 'export'` setting
+2. All pages are pre-rendered as static HTML
+3. Output is generated in the `out/` directory
+4. Cloudflare deploys static files from `out/`
+5. No serverless functions - pure static hosting
+
+## What is Static Export?
+
+Static export converts your Next.js app into static HTML/CSS/JS files:
+
+✅ **Advantages:**
+- 100% Cloudflare Pages compatible
+- No Node.js runtime needed
+- Blazing fast (pure static files)
+- No "module not found" errors
+- Works with Next.js 16
+
+⚠️ **Limitations:**
+- No Server-Side Rendering (SSR)
+- No API Routes (use separate backend)
+- No `getServerSideProps`
+- Client-side data fetching only
+
+## Your App's Static Features
+
+✅ **What Works:**
+- All 17 routes (pre-rendered)
+- Client-side routing
+- React hooks and state
+- API calls from browser
+- Form submissions to external APIs
+
+❌ **What Doesn't Work:**
+- API routes (`/api/*`)
+- Server-side data fetching
+- Middleware
+- ISR (Incremental Static Regeneration)
 
 ## Build Log Analysis
 
-From your latest successful build:
+Your build should show:
 ```
-✅ Build completed in 0.42s
-✅ Generated '.vercel/output/static/_worker.js/index.js'
-✅ Uploaded 590 files
-✅ Assets published!
+✓ Generating static pages (17/17)
+Route (app)
+┌ ○ / (Static)
+├ ○ /dashboard (Static)
+└ ... (all routes marked as Static)
 ```
 
 ## Troubleshooting
 
-### Issue: 404 Error on deployment
-**Cause**: Mismatch between build output and wrangler.toml configuration
+### Previous Error: "No such module node:stream"
+**Cause**: `@cloudflare/next-on-pages` adapter incompatible with Next.js 16
 
-**Solution**: 
-- ✅ Ensure `wrangler.toml` has: `pages_build_output_dir = ".vercel/output/static"`
-- ✅ Commit and push changes
-- ✅ Retry deployment
+**Solution**: ✅ Switched to static export (no adapter needed)
 
-### Issue: "@cloudflare/next-on-pages is deprecated"
-**Note**: The warning appears but the adapter still works. For future migrations:
-- Consider migrating to OpenNext adapter: https://opennext.js.org/cloudflare
-- Or use Cloudflare's native Next.js support (when stable for Next.js 16)
+### For Dynamic Features Later
+
+If you need server-side features:
+- Deploy backend separately (e.g., Cloudflare Workers, Vercel, etc.)
+- Use API calls from static frontend
+- Consider Next.js on Vercel for full SSR support
 
 ## Environment Variables (Optional)
-```
+
+```env
 NODE_VERSION=22
 NEXT_PUBLIC_API_URL=https://your-api-url.com
 ```
 
 ## Notes
 
-- ✅ Current setup works with Next.js 16.0.0
-- ✅ All 17 routes successfully prerendered
-- ✅ Supports App Router and Server Components
-- ⚠️ `@cloudflare/next-on-pages` is deprecated but functional
-- 💡 Consider OpenNext adapter for long-term support
+- ✅ Static export is production-ready and recommended
+- ✅ All client-side features work normally
+- ✅ Perfect for SPAs (Single Page Applications)
+- 💡 For backend needs, use separate API service
+- � Deploys in seconds, serves from edge

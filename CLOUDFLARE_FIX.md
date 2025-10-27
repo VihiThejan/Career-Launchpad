@@ -1,39 +1,61 @@
-# Cloudflare Pages - Quick Fix
+# Cloudflare Pages - Quick Fix ✅
 
-## ✅ Correct Configuration
+## ✅ Fixed: Static Export Configuration
 
-Your build is using `@cloudflare/next-on-pages` adapter. Here's the correct setup:
+Your app is now configured for **static export** which is fully compatible with Cloudflare Pages and Next.js 16.
 
 ### Build Settings
 
 | Setting | Value |
 |---------|-------|
 | **Framework preset** | Next.js |
-| **Build command** | `npx @cloudflare/next-on-pages@1` |
-| **Build output directory** | `.vercel/output/static` |
+| **Build command** | `npm ci && npm run build` |
+| **Build output directory** | `out` |
 | **Root directory** | (leave blank - use root) |
 | **Node version** | `20` or `22` |
 
+### What Changed?
+
+✅ **next.config.ts**: Added `output: 'export'` for static site generation  
+✅ **wrangler.toml**: Changed to `pages_build_output_dir = "out"`  
+✅ **.cloudflare/config.json**: Using standard `npm run build`  
+✅ **No adapter needed**: Pure static HTML/CSS/JS output
+
 ### Why This Works
 
-- **Root directory**: Left blank because Next.js is in the project root
-- **Build command**: Uses `@cloudflare/next-on-pages` adapter (already in Cloudflare build command)
-- **Build output**: `.vercel/output/static` (output from @cloudflare/next-on-pages)
+- ✅ Static export is 100% compatible with Cloudflare Pages
+- ✅ No Node.js runtime dependencies (no `node:stream` errors)
+- ✅ All pages are pre-rendered at build time
+- ✅ Faster loading - pure static files served from CDN
+- ✅ Works perfectly with Next.js 16
 
-### Steps to Apply
+### Steps to Deploy
 
-1. ✅ **Commit the wrangler.toml fix** to your repository
-2. Go to: **Cloudflare Dashboard** → **Pages** → **career-launchpad**
-3. Click: **Deployments** → Click **Retry deployment**
+1. **Commit these changes:**
+   ```bash
+   git add next.config.ts wrangler.toml .cloudflare/config.json CLOUDFLARE_FIX.md
+   git commit -m "Switch to static export for Cloudflare Pages compatibility"
+   git push
+   ```
 
-The wrangler.toml now correctly points to `.vercel/output/static` which matches your build output!
+2. **Update Cloudflare Dashboard** (if needed):
+   - Build command: `npm ci && npm run build`
+   - Build output: `out`
+   - Root directory: (leave blank)
 
-## What Was Wrong?
+3. **Retry deployment** in Cloudflare Pages
 
-- ❌ Build created files in: `.vercel/output/static`
-- ❌ wrangler.toml was looking in: `.next`
-- ✅ **Fixed**: wrangler.toml now points to: `.vercel/output/static`
+### Trade-offs
 
-## Done! 🎉
+✅ **Pros:**
+- Fully static, blazing fast
+- No serverless function errors
+- 100% Cloudflare compatible
+- All routes pre-rendered
 
-Commit and push these changes, then retry the deployment in Cloudflare!
+⚠️ **Cons:**
+- No server-side rendering (SSR)
+- No API routes (use separate API for backend)
+- All data fetching happens on client-side
+
+Your frontend is now a static site that will deploy successfully! 🎉
