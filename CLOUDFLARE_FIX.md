@@ -2,54 +2,38 @@
 
 ## ✅ Correct Configuration
 
-In your **Cloudflare Pages Dashboard**, set:
+Your build is using `@cloudflare/next-on-pages` adapter. Here's the correct setup:
 
 ### Build Settings
 
 | Setting | Value |
 |---------|-------|
 | **Framework preset** | Next.js |
-| **Build command** | `npm ci && npm run build` |
-| **Build output directory** | `.next` |
+| **Build command** | `npx @cloudflare/next-on-pages@1` |
+| **Build output directory** | `.vercel/output/static` |
 | **Root directory** | (leave blank - use root) |
 | **Node version** | `20` or `22` |
-| **Environment variables** | `NODE_VERSION=20` |
 
 ### Why This Works
 
 - **Root directory**: Left blank because Next.js is in the project root
-- **Build command**: Standard Next.js build (Cloudflare Pages has native Next.js support)
-- **Build output**: `.next` (standard Next.js output directory)
-- **Native Support**: Cloudflare Pages natively supports Next.js 13+ with App Router
+- **Build command**: Uses `@cloudflare/next-on-pages` adapter (already in Cloudflare build command)
+- **Build output**: `.vercel/output/static` (output from @cloudflare/next-on-pages)
 
 ### Steps to Apply
 
-1. Go to: **Cloudflare Dashboard** → **Pages** → **Your Project**
-2. Click: **Settings** → **Builds & deployments**
-3. Click: **Edit configuration**
-4. Update all fields as shown in the table above
-5. **Important**: Clear the "Root directory" field (leave it blank)
-6. Set Environment Variables:
-   - Click **Environment variables**
-   - Add: `NODE_VERSION` = `20`
-7. Click: **Save**
-8. Go to: **Deployments** → Click **Retry deployment**
+1. ✅ **Commit the wrangler.toml fix** to your repository
+2. Go to: **Cloudflare Dashboard** → **Pages** → **career-launchpad**
+3. Click: **Deployments** → Click **Retry deployment**
 
-## Configuration Files
+The wrangler.toml now correctly points to `.vercel/output/static` which matches your build output!
 
-The following files are configured for Cloudflare Pages:
+## What Was Wrong?
 
-- `wrangler.toml` - Points to `.next` output directory
-- `.cloudflare/config.json` - Standard Next.js build command
-- `package.json` - Standard Next.js scripts
-
-## Important Notes
-
-- ✅ Cloudflare Pages has **native Next.js support** (no adapter needed)
-- ✅ Supports App Router, Server Components, API Routes
-- ✅ Works with Next.js 13, 14, 15, and 16
-- ⚠️  Some Next.js features may have limitations on Cloudflare (check docs)
+- ❌ Build created files in: `.vercel/output/static`
+- ❌ wrangler.toml was looking in: `.next`
+- ✅ **Fixed**: wrangler.toml now points to: `.vercel/output/static`
 
 ## Done! 🎉
 
-Your deployment should now succeed with Cloudflare's native Next.js support!
+Commit and push these changes, then retry the deployment in Cloudflare!

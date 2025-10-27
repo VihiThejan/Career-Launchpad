@@ -1,62 +1,64 @@
 # Cloudflare Pages - Build Configuration
 
-## Build Settings
+## ✅ Current Working Configuration
 
-Configure these settings in your Cloudflare Pages dashboard:
+Your project is configured to use `@cloudflare/next-on-pages` adapter:
 
-### Framework Preset
-- **Framework preset**: Next.js (Static HTML Export) or Next.js
+### Build Settings (Dashboard)
+- **Framework preset**: Next.js
+- **Build command**: `npx @cloudflare/next-on-pages@1`
+- **Build output directory**: `.vercel/output/static`
+- **Root directory**: `/` (leave empty/blank)
+- **Node version**: `20` or `22`
 
-### Build Configuration
-- **Build command**: `cd frontend && npm install && npm run build`
-- **Build output directory**: `frontend/.next` or `frontend/out`
-- **Root directory**: `/` (leave empty or set to root)
-- **Node version**: `20` or `20.x`
+### Configuration Files
+- **wrangler.toml**: `pages_build_output_dir = ".vercel/output/static"`
+- **.cloudflare/config.json**: Build command uses `npx @cloudflare/next-on-pages@1`
 
-### Environment Variables (Optional)
+## How the Build Works
+
+1. Cloudflare runs: `npx @cloudflare/next-on-pages@1`
+2. This adapter:
+   - Runs `npx vercel build` internally
+   - Creates output in `.vercel/output/static/`
+   - Generates `_worker.js` for Cloudflare Workers
+3. Cloudflare deploys from: `.vercel/output/static` (as specified in wrangler.toml)
+
+## Build Log Analysis
+
+From your latest successful build:
 ```
-NODE_VERSION=20
-NEXT_PUBLIC_API_URL=https://your-api-url.com
+✅ Build completed in 0.42s
+✅ Generated '.vercel/output/static/_worker.js/index.js'
+✅ Uploaded 590 files
+✅ Assets published!
 ```
-
-## Alternative: Using Pages Framework
-
-If using `@cloudflare/next-on-pages`:
-
-### Build Settings
-- **Build command**: `cd frontend && npm install && npx @cloudflare/next-on-pages@1`
-- **Build output directory**: `frontend/.vercel/output/static`
 
 ## Troubleshooting
 
-### Issue: "No Next.js version detected"
-**Solution**: The build command needs to run from the `frontend` directory where `package.json` is located.
+### Issue: 404 Error on deployment
+**Cause**: Mismatch between build output and wrangler.toml configuration
 
-**Correct command**: 
-```bash
-cd frontend && npm install && npm run build
-```
-
-### Issue: Root directory mismatch
 **Solution**: 
-- Set Root Directory to: `frontend`
-- Build command: `npm install && npm run build`
-- Build output: `.next` or `out`
+- ✅ Ensure `wrangler.toml` has: `pages_build_output_dir = ".vercel/output/static"`
+- ✅ Commit and push changes
+- ✅ Retry deployment
 
-## Recommended Configuration
+### Issue: "@cloudflare/next-on-pages is deprecated"
+**Note**: The warning appears but the adapter still works. For future migrations:
+- Consider migrating to OpenNext adapter: https://opennext.js.org/cloudflare
+- Or use Cloudflare's native Next.js support (when stable for Next.js 16)
 
-**Option 1: Root at repository root**
-- Root Directory: `/` (empty)
-- Build command: `cd frontend && npm ci && npm run build`
-- Build output: `frontend/.next`
-
-**Option 2: Root at frontend directory**
-- Root Directory: `frontend`
-- Build command: `npm ci && npm run build`
-- Build output: `.next`
+## Environment Variables (Optional)
+```
+NODE_VERSION=22
+NEXT_PUBLIC_API_URL=https://your-api-url.com
+```
 
 ## Notes
 
-- ⚠️ `@cloudflare/next-on-pages` is deprecated. Consider using OpenNext adapter.
-- For static export, add `output: 'export'` to `next.config.ts`
-- Cloudflare Pages supports Next.js SSR with Workers
+- ✅ Current setup works with Next.js 16.0.0
+- ✅ All 17 routes successfully prerendered
+- ✅ Supports App Router and Server Components
+- ⚠️ `@cloudflare/next-on-pages` is deprecated but functional
+- 💡 Consider OpenNext adapter for long-term support
