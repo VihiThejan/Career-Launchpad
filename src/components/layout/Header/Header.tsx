@@ -17,7 +17,7 @@ export const Header = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2">
-            <Rocket className="w-8 h-8 text-blue-600" />
+            <Rocket className="w-8 h-8 text-red-600" />
             <span className="text-xl font-bold text-gray-900 hidden sm:block">
               Career Launchpad
             </span>

@@ -22,22 +22,25 @@ export const Button = ({
   className = '',
   ...props
 }: ButtonProps) => {
-  const baseStyles = 'inline-flex items-center justify-center font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed';
-  
+  const baseStyles =
+    'inline-flex items-center justify-center font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed';
+
   const variantStyles = {
-    primary: 'bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500',
+    // Use the brand red (#CF142B) for primary actions across the app
+    primary: 'bg-[#CF142B] text-white hover:bg-[#9e111f] focus:ring-[#CF142B]',
     secondary: 'bg-gray-600 text-white hover:bg-gray-700 focus:ring-gray-500',
-    outline: 'border-2 border-blue-600 text-blue-600 hover:bg-blue-50 focus:ring-blue-500',
+    outline:
+      'border-2 border-[#CF142B] text-[#CF142B] hover:bg-red-50 focus:ring-[#CF142B]',
     ghost: 'text-gray-700 hover:bg-gray-100 focus:ring-gray-500',
     danger: 'bg-red-600 text-white hover:bg-red-700 focus:ring-red-500',
   };
-  
+
   const sizeStyles = {
     sm: 'px-3 py-1.5 text-sm gap-1.5',
     md: 'px-4 py-2 text-base gap-2',
     lg: 'px-6 py-3 text-lg gap-2.5',
   };
-  
+
   const classes = [
     baseStyles,
     variantStyles[variant],
@@ -45,13 +48,9 @@ export const Button = ({
     fullWidth ? 'w-full' : '',
     className,
   ].join(' ');
-  
+
   return (
-    <button
-      className={classes}
-      disabled={disabled || isLoading}
-      {...props}
-    >
+    <button className={classes} disabled={disabled || isLoading} {...props}>
       {isLoading && (
         <svg
           className="animate-spin h-5 w-5"
@@ -74,9 +73,13 @@ export const Button = ({
           />
         </svg>
       )}
-      {!isLoading && leftIcon && <span className="flex-shrink-0">{leftIcon}</span>}
+      {!isLoading && leftIcon && (
+        <span className="flex-shrink-0">{leftIcon}</span>
+      )}
       <span>{children}</span>
-      {!isLoading && rightIcon && <span className="flex-shrink-0">{rightIcon}</span>}
+      {!isLoading && rightIcon && (
+        <span className="flex-shrink-0">{rightIcon}</span>
+      )}
     </button>
   );
 };

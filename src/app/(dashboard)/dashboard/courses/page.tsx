@@ -95,7 +95,7 @@ export default function CoursesPage() {
 
       {/* Tabs */}
       <div className="flex gap-4 border-b border-gray-200">
-        <button className="px-4 py-2 font-medium text-blue-600 border-b-2 border-blue-600">
+        <button className="px-4 py-2 font-medium text-red-600 border-b-2 border-red-600">
           All Courses ({courses.length})
         </button>
         <button className="px-4 py-2 font-medium text-gray-600 hover:text-gray-900">
@@ -111,8 +111,8 @@ export default function CoursesPage() {
         {courses.map((course) => (
           <Card key={course.id} className="group hover:shadow-lg transition-shadow">
             {/* Thumbnail */}
-            <div className="aspect-video bg-gradient-to-br from-blue-100 to-purple-100 rounded-lg mb-4 flex items-center justify-center">
-              <BookOpen className="w-12 h-12 text-blue-600" />
+            <div className="aspect-video bg-gradient-to-br from-red-100  rounded-lg mb-4 flex items-center justify-center">
+              <BookOpen className="w-12 h-12 text-red-600" />
             </div>
 
             {/* Content */}

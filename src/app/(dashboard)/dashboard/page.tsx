@@ -207,8 +207,8 @@ export default function DashboardPage() {
                         Instructor: {course.instructor}
                       </p>
                     </div>
-                    <Button size="sm" variant="primary">
-                      <Play className="w-4 h-4 mr-1" />
+                    <Button size="sm" variant="primary" className='w-[100px] flex justify-center items-center gap-2'>
+                      <Play className="w-4 h-4" />
                       Resume
                     </Button>
                   </div>
