@@ -15,7 +15,7 @@ import {
 
 export default function ProgressPage() {
   const skillProgress = [
-    { name: 'React', level: 85, total: 100, color: 'bg-blue-600' },
+    { name: 'React', level: 85, total: 100, color: 'bg-red-600' },
     { name: 'Node.js', level: 70, total: 100, color: 'bg-green-600' },
     { name: 'TypeScript', level: 65, total: 100, color: 'bg-indigo-600' },
     { name: 'AWS', level: 45, total: 100, color: 'bg-orange-600' },
@@ -98,7 +98,7 @@ export default function ProgressPage() {
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
         <Card>
           <div className="text-center">
-            <BookOpen className="w-8 h-8 text-blue-600 mx-auto mb-2" />
+            <BookOpen className="w-8 h-8 text-red-600 mx-auto mb-2" />
             <p className="text-3xl font-bold text-gray-900">13/20</p>
             <p className="text-sm text-gray-600">Courses Completed</p>
           </div>
@@ -160,9 +160,9 @@ export default function ProgressPage() {
                   key={activity.id}
                   className="flex items-start gap-3 p-3 bg-gray-50 rounded-lg"
                 >
-                  <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
+                  <div className="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center flex-shrink-0">
                     {activity.type === 'course' && (
-                      <BookOpen className="w-5 h-5 text-blue-600" />
+                      <BookOpen className="w-5 h-5 text-red-600" />
                     )}
                     {activity.type === 'assessment' && (
                       <Target className="w-5 h-5 text-green-600" />
@@ -271,7 +271,7 @@ export default function ProgressPage() {
                     fill="none"
                     strokeDasharray={`${2 * Math.PI * 40}`}
                     strokeDashoffset={`${2 * Math.PI * 40 * (1 - 0.73)}`}
-                    className="text-blue-600"
+                    className="text-red-600"
                   />
                 </svg>
                 <div className="absolute inset-0 flex items-center justify-center">

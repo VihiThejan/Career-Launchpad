@@ -8,12 +8,12 @@ import { Rocket, GraduationCap, Briefcase, Users } from "lucide-react";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
+    <div className="min-h-screen bg-gradient-to-br from-red-50 via-white to-purple-50">
       {/* Header */}
       <header className="container mx-auto px-4 py-6">
         <nav className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <Rocket className="w-8 h-8 text-blue-600" />
+            <Rocket className="w-8 h-8 text-red-600" />
             <h1 className="text-2xl font-bold text-gray-900">Career Launchpad</h1>
           </div>
           <div className="flex items-center gap-4">
@@ -58,8 +58,8 @@ export default function Home() {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
           <Card className="text-center hover:shadow-lg transition-shadow">
             <div className="flex flex-col items-center gap-4">
-              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center">
-                <GraduationCap className="w-8 h-8 text-blue-600" />
+              <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center">
+                <GraduationCap className="w-8 h-8 text-red-600" />
               </div>
               <h3 className="text-lg font-semibold">Personalized Learning</h3>
               <p className="text-gray-600 text-sm">
@@ -106,19 +106,19 @@ export default function Home() {
         </div>
 
         {/* Stats Section */}
-        <Card className="bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+        <Card className="bg-gradient-to-r from-red-600 to-purple-600 text-white">
           <div className="grid md:grid-cols-3 gap-8 text-center py-8">
             <div>
               <div className="text-4xl font-bold mb-2">10,000+</div>
-              <div className="text-blue-100">Active Learners</div>
+              <div className="text-red-100">Active Learners</div>
             </div>
             <div>
               <div className="text-4xl font-bold mb-2">500+</div>
-              <div className="text-blue-100">Expert Mentors</div>
+              <div className="text-red-100">Expert Mentors</div>
             </div>
             <div>
               <div className="text-4xl font-bold mb-2">5,000+</div>
-              <div className="text-blue-100">Jobs Posted</div>
+              <div className="text-red-100">Jobs Posted</div>
             </div>
           </div>
         </Card>

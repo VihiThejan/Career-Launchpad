@@ -64,12 +64,12 @@ export default function ForgotPasswordPage() {
         <p className="text-gray-600 mb-6">
           We&apos;ve sent a password reset link to:
         </p>
-        <p className="text-blue-600 font-medium mb-6">{submittedEmail}</p>
+        <p className="text-red-600 font-medium mb-6">{submittedEmail}</p>
         <p className="text-sm text-gray-500 mb-8">
           Didn&apos;t receive the email? Check your spam folder or{' '}
           <button
             onClick={() => setEmailSent(false)}
-            className="text-blue-600 hover:text-blue-700 font-medium"
+            className="text-red-600 hover:text-red-700 font-medium"
           >
             try again
           </button>

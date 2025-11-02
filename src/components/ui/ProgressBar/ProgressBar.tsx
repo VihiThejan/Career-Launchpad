@@ -28,7 +28,7 @@ export const ProgressBar = ({
   };
 
   const variantStyles = {
-    default: 'bg-blue-600',
+    default: 'bg-red-600',
     success: 'bg-green-600',
     warning: 'bg-yellow-600',
     danger: 'bg-red-600',

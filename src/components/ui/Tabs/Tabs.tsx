@@ -40,21 +40,21 @@ export const Tabs = ({
   const variantStyles = {
     default: {
       tab: 'border-b-2',
-      active: 'border-blue-600 text-blue-600',
+      active: 'border-red-600 text-red-600',
       inactive: 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300',
       disabled: 'text-gray-300 cursor-not-allowed',
       container: 'border-b border-gray-200',
     },
     pills: {
       tab: 'rounded-lg',
-      active: 'bg-blue-600 text-white',
+      active: 'bg-red-600 text-white',
       inactive: 'text-gray-700 hover:bg-gray-100',
       disabled: 'text-gray-300 cursor-not-allowed',
       container: 'bg-gray-50 rounded-lg p-1',
     },
     underline: {
       tab: 'border-b-2',
-      active: 'border-blue-600 text-blue-600',
+      active: 'border-red-600 text-red-600',
       inactive: 'border-transparent text-gray-600 hover:text-gray-900',
       disabled: 'text-gray-300 cursor-not-allowed',
       container: '',

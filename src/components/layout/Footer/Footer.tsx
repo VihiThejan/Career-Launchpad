@@ -9,7 +9,7 @@ export const Footer = () => {
           {/* Brand */}
           <div className="col-span-1">
             <Link href="/" className="flex items-center gap-2 mb-4">
-              <Rocket className="w-8 h-8 text-blue-500" />
+              <Rocket className="w-8 h-8 text-red-500" />
               <span className="text-xl font-bold text-white">
                 Career Launchpad
               </span>

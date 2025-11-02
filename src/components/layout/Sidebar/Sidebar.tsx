@@ -86,7 +86,7 @@ export const Sidebar = () => {
                 className={cn(
                   'flex items-center gap-3 px-4 py-3 rounded-lg font-medium transition-all',
                   isActive
-                    ? 'bg-blue-50 text-blue-600'
+                    ? 'bg-red-50 text-red-600'
                     : 'text-gray-700 hover:bg-gray-50'
                 )}
               >
@@ -103,13 +103,13 @@ export const Sidebar = () => {
         </nav>
 
         {/* Progress Card */}
-        <div className="m-4 p-4 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg border border-blue-100">
+        <div className="m-4 p-4 bg-gradient-to-br from-red-50 to-indigo-50 rounded-lg border border-red-100">
           <h4 className="font-semibold text-gray-900 mb-2">Learning Progress</h4>
           <p className="text-sm text-gray-600 mb-3">
             You're 65% through your learning path!
           </p>
           <div className="w-full bg-gray-200 rounded-full h-2">
-            <div className="bg-blue-600 h-2 rounded-full" style={{ width: '65%' }} />
+            <div className="bg-red-600 h-2 rounded-full" style={{ width: '65%' }} />
           </div>
           <p className="text-xs text-gray-500 mt-2">13 of 20 courses completed</p>
         </div>

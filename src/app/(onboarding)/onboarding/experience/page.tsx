@@ -105,7 +105,7 @@ export default function ExperiencePage() {
             >
               <div className="flex justify-between items-center mb-4">
                 <div className="flex items-center gap-2">
-                  <Briefcase className="w-5 h-5 text-blue-600" />
+                  <Briefcase className="w-5 h-5 text-red-600" />
                   <h3 className="font-semibold text-gray-900">
                     Position {index + 1}
                   </h3>

@@ -101,7 +101,7 @@ export default function GoalsPage() {
       <Card className="max-w-3xl mx-auto">
         <div className="mb-6">
           <div className="flex items-center gap-2 mb-2">
-            <Target className="w-6 h-6 text-blue-600" />
+            <Target className="w-6 h-6 text-red-600" />
             <h1 className="text-2xl font-bold text-gray-900">Career Goals</h1>
           </div>
           <p className="text-gray-600">
@@ -188,14 +188,14 @@ export default function GoalsPage() {
           </div>
 
           {/* Success Message Box */}
-          <div className="p-4 bg-blue-50 border border-blue-100 rounded-lg">
+          <div className="p-4 bg-red-50 border border-red-100 rounded-lg">
             <div className="flex items-start gap-3">
-              <Sparkles className="w-5 h-5 text-blue-600 mt-0.5" />
+              <Sparkles className="w-5 h-5 text-red-600 mt-0.5" />
               <div>
-                <h4 className="font-semibold text-blue-900 mb-1">
+                <h4 className="font-semibold text-red-900 mb-1">
                   You&apos;re Almost Done!
                 </h4>
-                <p className="text-sm text-blue-700">
+                <p className="text-sm text-red-700">
                   After completing this step, we&apos;ll create a personalized
                   learning path tailored to your goals and current skill level.
                 </p>

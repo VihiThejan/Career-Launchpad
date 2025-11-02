@@ -128,7 +128,7 @@ export default function SkillsPage() {
         {/* Add Skill Form */}
         <div className="mb-6 p-5 bg-gray-50 rounded-lg">
           <div className="flex items-center gap-2 mb-4">
-            <Code className="w-5 h-5 text-blue-600" />
+            <Code className="w-5 h-5 text-red-600" />
             <h3 className="font-semibold text-gray-900">Add a Skill</h3>
           </div>
 
@@ -179,7 +179,7 @@ export default function SkillsPage() {
                 key={skill}
                 type="button"
                 onClick={() => addPopularSkill(skill)}
-                className="px-3 py-1 text-sm bg-white border border-gray-300 rounded-full hover:border-blue-500 hover:text-blue-600 transition-colors"
+                className="px-3 py-1 text-sm bg-white border border-gray-300 rounded-full hover:border-red-500 hover:text-red-600 transition-colors"
               >
                 + {skill}
               </button>

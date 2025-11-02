@@ -208,11 +208,11 @@ export default function RegisterPage() {
             label={
               <span className="text-sm text-gray-600">
                 I agree to the{' '}
-                <Link href="/terms" className="text-blue-600 hover:text-blue-700">
+                <Link href="/terms" className="text-red-600 hover:text-red-700">
                   Terms of Service
                 </Link>{' '}
                 and{' '}
-                <Link href="/privacy" className="text-blue-600 hover:text-blue-700">
+                <Link href="/privacy" className="text-red-600 hover:text-red-700">
                   Privacy Policy
                 </Link>
               </span>
@@ -236,7 +236,7 @@ export default function RegisterPage() {
       {/* Sign In Link */}
       <p className="text-center text-sm text-gray-600 mt-6">
         Already have an account?{' '}
-        <Link href="/login" className="text-blue-600 hover:text-blue-700 font-medium">
+        <Link href="/login" className="text-red-600 hover:text-red-700 font-medium">
           Sign in
         </Link>
       </p>

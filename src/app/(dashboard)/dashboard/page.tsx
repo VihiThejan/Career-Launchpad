@@ -34,8 +34,8 @@ export default function DashboardPage() {
       value: '12',
       change: '+2 this month',
       iconType: 'BookOpen',
-      color: 'text-blue-600',
-      bgColor: 'bg-blue-50',
+      color: 'text-red-600',
+      bgColor: 'bg-red-50',
     },
     {
       label: 'Skills Acquired',
@@ -196,7 +196,7 @@ export default function DashboardPage() {
               {activeCourses.map((course) => (
                 <div
                   key={course.id}
-                  className="p-4 border border-gray-200 rounded-lg hover:border-blue-300 hover:shadow-sm transition-all"
+                  className="p-4 border border-gray-200 rounded-lg hover:border-red-300 hover:shadow-sm transition-all"
                 >
                   <div className="flex items-start justify-between mb-3">
                     <div className="flex-1">
@@ -252,9 +252,9 @@ export default function DashboardPage() {
                 </div>
               </div>
 
-              <div className="flex items-center justify-between p-4 bg-blue-50 border-2 border-blue-400 rounded-lg">
+              <div className="flex items-center justify-between p-4 bg-red-50 border-2 border-red-400 rounded-lg">
                 <div className="flex items-center gap-3">
-                  <TrendingUp className="w-5 h-5 text-blue-600" />
+                  <TrendingUp className="w-5 h-5 text-red-600" />
                   <div>
                     <p className="font-medium text-gray-900">Mid-Level Developer</p>
                     <p className="text-sm text-gray-600">In Progress - 68%</p>
@@ -284,7 +284,7 @@ export default function DashboardPage() {
               {upcomingTasks.map((task) => (
                 <div
                   key={task.id}
-                  className="p-3 border border-gray-200 rounded-lg hover:border-blue-300 transition-colors"
+                  className="p-3 border border-gray-200 rounded-lg hover:border-red-300 transition-colors"
                 >
                   <div className="flex items-start gap-2 mb-2">
                     <input
@@ -333,7 +333,7 @@ export default function DashboardPage() {
               {recommendedCourses.map((course) => (
                 <div
                   key={course.id}
-                  className="p-3 border border-gray-200 rounded-lg hover:border-blue-300 transition-colors"
+                  className="p-3 border border-gray-200 rounded-lg hover:border-red-300 transition-colors"
                 >
                   <h4 className="font-medium text-gray-900 mb-2">
                     {course.title}

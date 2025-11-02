@@ -28,7 +28,7 @@ export const StepIndicator = ({ steps, currentStep }: StepIndicatorProps) => {
                   currentStep > step.id
                     ? 'bg-green-500 text-white'
                     : currentStep === step.id
-                    ? 'bg-blue-600 text-white ring-4 ring-blue-100'
+                    ? 'bg-red-600 text-white ring-4 ring-red-100'
                     : 'bg-gray-200 text-gray-600'
                 )}
               >

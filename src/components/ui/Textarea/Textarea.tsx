@@ -60,7 +60,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
 
     const stateStyles = error
       ? 'border-red-500 focus:border-red-500 focus:ring-red-500'
-      : 'border-gray-300 focus:border-blue-500 focus:ring-blue-500';
+      : 'border-gray-300 focus:border-red-500 focus:ring-red-500';
 
     return (
       <div className={cn(fullWidth && 'w-full')}>

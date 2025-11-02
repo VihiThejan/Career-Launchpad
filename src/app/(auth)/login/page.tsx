@@ -86,10 +86,10 @@ export default function LoginPage() {
         <p className="text-gray-600">Sign in to continue your learning journey</p>
         
         {/* Demo Credentials */}
-        <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-lg text-left">
-          <p className="text-xs font-semibold text-blue-900 mb-1">📝 Demo Mode - Use any credentials:</p>
-          <p className="text-xs text-blue-700">Email: demo@example.com</p>
-          <p className="text-xs text-blue-700">Password: password123</p>
+        <div className="mt-4 p-3 bg-red-50 border border-red-200 rounded-lg text-left">
+          <p className="text-xs font-semibold text-red-900 mb-1">📝 Demo Mode - Use any credentials:</p>
+          <p className="text-xs text-red-700">Email: demo@example.com</p>
+          <p className="text-xs text-red-700">Password: password123</p>
         </div>
       </div>
 
@@ -145,7 +145,7 @@ export default function LoginPage() {
           />
           <Link
             href="/forgot-password"
-            className="text-sm text-blue-600 hover:text-blue-700 font-medium"
+            className="text-sm text-red-600 hover:text-red-700 font-medium"
           >
             Forgot password?
           </Link>
@@ -214,7 +214,7 @@ export default function LoginPage() {
       {/* Sign Up Link */}
       <p className="text-center text-sm text-gray-600 mt-6">
         Don&apos;t have an account?{' '}
-        <Link href="/register" className="text-blue-600 hover:text-blue-700 font-medium">
+        <Link href="/register" className="text-red-600 hover:text-red-700 font-medium">
           Sign up
         </Link>
       </p>
