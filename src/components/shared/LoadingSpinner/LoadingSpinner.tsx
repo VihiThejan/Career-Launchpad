@@ -24,7 +24,7 @@ export const LoadingSpinner = ({
     <div className={cn('flex flex-col items-center justify-center gap-2', className)}>
       <div
         className={cn(
-          'animate-spin rounded-full border-4 border-gray-200 border-t-blue-600',
+          'animate-spin rounded-full border-4 border-gray-200 border-t-red-600',
           sizeStyles[size]
         )}
         role="status"
