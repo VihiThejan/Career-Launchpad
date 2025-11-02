@@ -31,7 +31,7 @@ export const Toast = ({
   }, [id, duration, onClose]);
 
   const icons = {
-    success: <CheckCircle2 className="w-5 h-5 text-green-500" />,
+    success: <CheckCircle className="w-5 h-5 text-green-500" />,
     error: <XCircle className="w-5 h-5 text-red-500" />,
     warning: <AlertCircle className="w-5 h-5 text-yellow-500" />,
     info: <Info className="w-5 h-5 text-red-500" />,
