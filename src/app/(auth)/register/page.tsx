@@ -144,6 +144,7 @@ export default function RegisterPage() {
           <Input
             id="password"
             type={showPassword ? 'text' : 'password'}
+            className='text-[#000]'
             placeholder="Create a strong password"
             leftIcon={<Lock className="w-4 h-4" />}
             rightIcon={
