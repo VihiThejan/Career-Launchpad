@@ -56,7 +56,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           <input
             ref={ref}
             id={inputId}
-            className={`${baseStyles} ${stateStyles} ${iconPadding} ${className} text-black`}
+            className={`${baseStyles} ${stateStyles} ${iconPadding} ${className}`}
             disabled={disabled}
             {...props}
           />
